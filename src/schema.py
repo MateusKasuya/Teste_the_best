@@ -42,3 +42,7 @@ class ItensPedido(pa.SchemaModel):
     produto_id : Series[int] = pa.Field(gt = 0)
     quantidade : Series[int] = pa.Field(gt = 0)
     preco_unitario : Series[float] = pa.Field(gt = 0)
+
+    class Config:
+        coerce = True
+        strict = True
