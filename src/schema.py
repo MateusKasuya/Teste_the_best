@@ -4,7 +4,7 @@ import pandas as pd
 
 email_regex = r"[^@]+@[^@]+\.[^@]+"
 
-class Cliente(pa.SchemaModel):
+class ClientesSchema(pa.SchemaModel):
     cliente_id : Series[int] = pa.Field(gt = 0)
     nome : Series[str]
     email : Series[str] = pa.Field(regex = email_regex)
@@ -16,7 +16,7 @@ class Cliente(pa.SchemaModel):
 
 CATEGORIAS_PERMITIDAS = ['Alimentos', 'Complementos', 'Bebidas', 'Snacks']
 
-class Produtos(pa.SchemaModel):
+class ProdutosSchema(pa.SchemaModel):
     produto_id : Series[int] = pa.Field(gt = 0)
     nome : Series[str]
     categoria : Series[str] = pa.Field(check = pa.Check(lambda x: x.isin(CATEGORIAS_PERMITIDAS)))
@@ -26,7 +26,7 @@ class Produtos(pa.SchemaModel):
         coerce = True
         strict = True
 
-class Pedidos(pa.SchemaModel):
+class PedidosSchema(pa.SchemaModel):
     pedido_id : Series[int] = pa.Field(gt = 0)
     cliente_id : Series[int] = pa.Field(gt = 0)
     data_pedido : Series[pd.Timestamp] = pa.Field()
@@ -36,7 +36,7 @@ class Pedidos(pa.SchemaModel):
         coerce = True
         strict = True
 
-class ItensPedido(pa.SchemaModel):
+class ItensPedidosSchema(pa.SchemaModel):
     item_pedido_id : Series[int] = pa.Field(gt = 0)
     pedido_id : Series[int] = pa.Field(gt = 0)
     produto_id : Series[int] = pa.Field(gt = 0)

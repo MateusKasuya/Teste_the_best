@@ -1,5 +1,6 @@
-import pandas as pd
 from sqlalchemy import create_engine
+from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 DB_USER = 'user'
 DB_PASSWORD = 'password'
@@ -11,3 +12,6 @@ DATABASE_URL = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NA
 
 engine = create_engine(DATABASE_URL)
 
+SessionLocal = sessionmaker(autocommit = False, autoflush= False, bind = engine)
+
+Base = declarative_base()
