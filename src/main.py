@@ -1,6 +1,7 @@
 import pandas as pd
+import pandera as pa
 from extract import extract_csv_to_dataframe
-from transform import transform_dataframe
+from transform import transform_clientes, transform_itenspedidos, transform_pedidos, transform_produtos
 
 def run_etl():
 
@@ -17,12 +18,13 @@ def run_etl():
     produtos_df = extract_csv_to_dataframe(produtos_csv)
 
     # Aplicar Transformação no dataframe
-    clientes_df_transformed = transform_dataframe(clientes_df)
-    itenspedido_df_transformed = transform_dataframe(itenspedido_df)
-    pedidos_df_transformed = transform_dataframe(pedidos_df)
-    produtos_df_transformed = transform_dataframe(produtos_df)
+    clientes_df_transformed = transform_clientes(clientes_df)
+    itenspedido_df_transformed = transform_itenspedidos(itenspedido_df)
+    pedidos_df_transformed = transform_pedidos(pedidos_df)
+    produtos_df_transformed = transform_produtos(produtos_df)
+
 
     return None
 
 if __name__ == '__main__':
-    run_etl()
+    run_etl() 
