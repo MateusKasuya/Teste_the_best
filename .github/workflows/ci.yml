@@ -1,24 +1,23 @@
-name : ci
+name: ci
 
-on : push
+on: push  
 jobs:
-    test:
+    build-and-test:
         runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                python-version: ["3.9", "3.10", "3.11", "3.12"]
-
         steps:
             - name: Baixar o repositório
               uses: actions/checkout@v4
 
-            - name: Instalar o python
+            - name: Instalar o Python
               uses: actions/setup-python@v5
               with:
-                python-version: ${{matrix.python-version}}
+                python-version: 3.12.2
 
-            - name: Instalar as Libs
-              run: pip install -r requirements.txt
+            - name: Instalar o Poetry via pip
+              run: pip install poetry
 
-            - name: rodar minha rotina de testes
-              run: pytest tests/test_contrato.py
+            - name: Instalar dependências com o Poetry
+              run: poetry install
+
+            - name: Rodar minha rotina de testes com o Poetry
+              run: poetry run pytest tests -v
