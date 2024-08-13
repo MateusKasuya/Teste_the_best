@@ -51,7 +51,7 @@ def test_load_dataframe_to_postgres():
         assert result[1].value == 200
 
     finally:
-        # Limpa os dados após o teste
+        # Limpa os dados após os testes
         session.query(TestModel).delete()
         session.commit()
         session.close()
