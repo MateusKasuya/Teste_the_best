@@ -1,7 +1,9 @@
+# Mesmo arquivo do transform.py, é utilizado no pytest test_transform.py
+
 import pandas as pd
 import pandera as pa
 
-from schema import (
+from src.schema import (
     ClientesSchema,
     ItensPedidosSchema,
     PedidosSchema,

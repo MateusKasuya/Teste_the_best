@@ -1,4 +1,4 @@
-version: '3.8'
+﻿version: '3.8'
 services:
   postgres:
     image: postgres:latest
@@ -10,6 +10,9 @@ services:
       POSTGRES_PASSWORD: password
     networks:
       - mynetwork
+
+networks:
+  mynetwork:
 
 volumes:
   postgres_data:

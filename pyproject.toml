@@ -9,10 +9,24 @@ readme = "README.md"
 python = "^3.12"
 pandas = "^2.2.2"
 sqlalchemy = "^2.0.32"
-psycopg2 = "^2.9.9"
 pandera = "^0.20.3"
+psycopg2-binary = "^2.9.9"
+pytest = "^8.3.2"
+pytest-mock = "^3.14.0"
+isort = "^5.13.2"
+blue = "^0.9.1"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+known_third_party= []
+
+[tool.taskipy.tasks]
+
+format = "isort . && blue ."
+test = "poetry run pytest -v"
+run = "python src/main.py"

@@ -1,9 +1,23 @@
 import pandas as pd
 import pandera as pa
+
+from database import Base, SessionLocal, engine
 from extract import extract_csv_to_dataframe
-from transform import transform_clientes, transform_itenspedidos, transform_pedidos, transform_produtos
+from load import load_dataframe_to_postgres
+from models import ClienteBase, ItensPedidosBase, PedidosBase, ProdutosBase
+from transform import (
+    transform_clientes,
+    transform_itenspedidos,
+    transform_pedidos,
+    transform_produtos,
+)
+
 
 def run_etl():
+
+    # Base.metadata.create_all(engine)
+
+    # session = SessionLocal()
 
     # File Paths dos CVS
     clientes_csv = 'data/clientes 2(in).csv'
@@ -23,8 +37,13 @@ def run_etl():
     pedidos_df_transformed = transform_pedidos(pedidos_df)
     produtos_df_transformed = transform_produtos(produtos_df)
 
+    # Carrega a tabela no banco de dados
 
-    return None
+    # load_dataframe_to_postgres(clientes_df_transformed, ClienteBase, session)
+    # load_dataframe_to_postgres(itenspedido_df_transformed, ItensPedidosBase, session)
+    # load_dataframe_to_postgres(pedidos_df_transformed, PedidosBase, session)
+    # load_dataframe_to_postgres(produtos_df_transformed, ProdutosBase, session)
+
 
 if __name__ == '__main__':
-    run_etl() 
+    run_etl()

@@ -1,8 +1,9 @@
+import pandas as pd
 import pandera as pa
 from pandera.typing import Series
-import pandas as pd
 
-email_regex = r"[^@]+@[^@]+\.[^@]+"
+email_regex = r'[^@]+@[^@]+\.[^@]+'
+
 
 class ClientesSchema(pa.DataFrameModel):
     """
@@ -17,14 +18,16 @@ class ClientesSchema(pa.DataFrameModel):
     coerce: converte os dados para os tipos definidos
     strict: exige que o dataframe tenha as mesmas colunas do schema
     """
-    cliente_id : Series[int] = pa.Field(gt = 0)
-    nome : Series[str]
-    email : Series[str] = pa.Field(regex = email_regex)
-    data_cadastro  : Series[pd.Timestamp] = pa.Field()
+
+    cliente_id: Series[int] = pa.Field(gt=0)
+    nome: Series[str]
+    email: Series[str] = pa.Field(regex=email_regex)
+    data_cadastro: Series[pd.Timestamp] = pa.Field()
 
     class Config:
         coerce = True
         strict = True
+
 
 class ProdutosSchema(pa.DataFrameModel):
     """
@@ -39,14 +42,16 @@ class ProdutosSchema(pa.DataFrameModel):
     coerce: converte os dados para os tipos definidos
     strict: exige que o dataframe tenha as mesmas colunas do schema
     """
-    produto_id : Series[int] = pa.Field(gt = 0)
-    nome : Series[str]
-    categoria : Series[str]
-    preco : Series[float] = pa.Field(ge = 0)
+
+    produto_id: Series[int] = pa.Field(gt=0)
+    nome: Series[str]
+    categoria: Series[str]
+    preco: Series[float] = pa.Field(ge=0)
 
     class Config:
         coerce = True
         strict = True
+
 
 class PedidosSchema(pa.DataFrameModel):
     """
@@ -61,14 +66,16 @@ class PedidosSchema(pa.DataFrameModel):
     coerce: converte os dados para os tipos definidos
     strict: exige que o dataframe tenha as mesmas colunas do schema
     """
-    pedido_id : Series[int] = pa.Field(gt = 0)
-    cliente_id : Series[int] = pa.Field(gt = 0)
-    data_pedido : Series[pd.Timestamp] = pa.Field()
-    valor_total : Series[float] = pa.Field(ge = 0)
+
+    pedido_id: Series[int] = pa.Field(gt=0)
+    cliente_id: Series[int] = pa.Field(gt=0)
+    data_pedido: Series[pd.Timestamp] = pa.Field()
+    valor_total: Series[float] = pa.Field(ge=0)
 
     class Config:
         coerce = True
         strict = True
+
 
 class ItensPedidosSchema(pa.DataFrameModel):
     """
@@ -84,11 +91,12 @@ class ItensPedidosSchema(pa.DataFrameModel):
     coerce: converte os dados para os tipos definidos
     strict: exige que o dataframe tenha as mesmas colunas do schema
     """
-    item_pedido_id : Series[int] = pa.Field(gt = 0)
-    pedido_id : Series[int] = pa.Field(gt = 0)
-    produto_id : Series[int] = pa.Field(gt = 0)
-    quantidade : Series[int] = pa.Field(ge = 0)
-    preco_unitario : Series[float] = pa.Field(ge = 0)
+
+    item_pedido_id: Series[int] = pa.Field(gt=0)
+    pedido_id: Series[int] = pa.Field(gt=0)
+    produto_id: Series[int] = pa.Field(gt=0)
+    quantidade: Series[int] = pa.Field(ge=0)
+    preco_unitario: Series[float] = pa.Field(ge=0)
 
     class Config:
         coerce = True

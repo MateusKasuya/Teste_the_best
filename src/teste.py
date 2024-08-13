@@ -1,28 +1,37 @@
 # main.py
 
-from src.extract import extract_csv_to_dataframe
-from src.transform import transform_dataframe
-from src.load import load_data_to_db
-from src.database import SessionLocal, engine, Base
-from src.models import ClienteBase, ProdutosBase, PedidosBase, ItensPedidosBase
-from src.schema import ClientesSchema, ProdutosSchema, PedidosSchema, ItensPedidosSchema
-
 import pandera as pa
+
+from src.database import Base, SessionLocal, engine
+from src.extract import extract_csv_to_dataframe
+from src.load import load_data_to_db
+from src.models import ClienteBase, ItensPedidosBase, PedidosBase, ProdutosBase
+from src.schema import (
+    ClientesSchema,
+    ItensPedidosSchema,
+    PedidosSchema,
+    ProdutosSchema,
+)
+from src.transform import transform_dataframe
+
 
 def validate_data(df, schema):
     """
     Valida um DataFrame utilizando o schema fornecido.
-    
+
     df -> DataFrame que será validado.
     schema -> Classe SchemaModel do Pandera correspondente ao DataFrame.
     """
     try:
         validated_df = schema.validate(df)
-        print(f"Validação do DataFrame {schema.__name__} concluída com sucesso.")
+        print(
+            f'Validação do DataFrame {schema.__name__} concluída com sucesso.'
+        )
         return validated_df
     except pa.errors.SchemaError as e:
-        print(f"Erro de validação no DataFrame {schema.__name__}: {e}")
+        print(f'Erro de validação no DataFrame {schema.__name__}: {e}')
         return None
+
 
 def run_etl():
     # Cria as tabelas no banco de dados
@@ -61,5 +70,6 @@ def run_etl():
         if itens_pedidos_df is not None:
             load_data_to_db(itens_pedidos_df, ItensPedidosBase, session)
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     run_etl()
