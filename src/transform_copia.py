@@ -3,7 +3,7 @@
 import pandas as pd
 import pandera as pa
 
-from schema import (
+from .schema import (
     ClientesSchema,
     ItensPedidosSchema,
     PedidosSchema,
