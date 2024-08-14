@@ -1,0 +1,11 @@
+site_name: Seu Projeto
+nav:
+  - Home: index.md
+
+repo_name: "MateusKasuya/Teste_the_best"
+repo_url: "https://github.com/MateusKasuya/Teste_the_best"
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
