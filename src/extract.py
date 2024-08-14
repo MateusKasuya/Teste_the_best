@@ -9,7 +9,7 @@ def extract_csv_to_dataframe(file_csv: str) -> pd.DataFrame:
     """
 
     try:
-        df = pd.read_csv(file_csv, encoding='utf-8')
+        df = pd.read_csv(file_csv)
         print(f'Arquivo {file_csv} lido com sucesso.')
         return df
 

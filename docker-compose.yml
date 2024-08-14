@@ -11,6 +11,19 @@ services:
     networks:
       - mynetwork
 
+  etl:
+    build:
+      context: .
+      dockerfile: src/Dockerfile
+    volumes:
+      - ./src:/app
+    environment:
+      DATABASE_URL: postgresql://user:password@postgres/mydatabase
+    depends_on:
+      - postgres
+    networks:
+      - mynetwork
+
 networks:
   mynetwork:
 
