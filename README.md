@@ -11,7 +11,7 @@ Este repositório é uma parte do teste técnico do Grupo The Best. O intuito aq
 
 * **Versionamento com Git e GitHub**: Versionar o projeto no GitHub para publicação.
 
-* **Documentação com MKDocs**: (https://lvgalvao.github.io/DataProjectStarterKit/)
+* **Documentação com MKDocs**
 
 * **Automatização e CI**: Configuração de rotinas de integração a qualidade do projeto.
 
@@ -63,6 +63,7 @@ task test
 
 ```bash
 task doc
+http://127.0.0.1:8000/
 ```
 
 7. Execute o comando de execucão da pipeline para realizar a ETL:
