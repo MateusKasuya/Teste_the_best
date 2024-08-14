@@ -31,6 +31,7 @@ Este repositório é uma parte do teste técnico do Grupo The Best. O intuito aq
 
 ```bash
 git clone https://github.com/MateusKasuya/Teste_the_best
+cd Teste_the_best
 ```
 
 2. Configure a versão correta do Python com `pyenv`:
