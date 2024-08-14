@@ -1,16 +1,22 @@
 import pandas as pd
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 
 def load_dataframe_to_postgres(df: pd.DataFrame, model, session: Session):
     """
-    Essa função carrega os dados de um DataFrame para a tabela correspondente no banco de dados Postgres.
+    Essa função carrega os dados de um DataFrame para a tabela correspondente no banco de dados Postgres,
+    substituindo os dados existentes.
 
     df -> DataFrame que contém os dados a serem carregados.
     model -> Classe de modelo correspondente à tabela do banco de dados.
     session -> Sessão do SQLAlchemy para interação com o banco de dados.
     """
     try:
+        # Exclui todos os dados existentes na tabela
+        session.execute(text(f'DELETE FROM {model.__tablename__}'))
+        session.commit()
+
         # Converte o DataFrame para uma lista de dicionários
         data_to_insert = df.to_dict(orient='records')
 

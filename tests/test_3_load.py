@@ -5,11 +5,19 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 
 from src.load import load_dataframe_to_postgres
 
-# Configurações do banco de dados de teste
-DATABASE_URL = 'postgresql+psycopg2://username:password@localhost/test_db'
+# URL de conexão com o PostgreSQL, formada a partir das variáveis de ambiente
+DB_HOST = 'dpg-cqtusiogph6c73a5s900-a.oregon-postgres.render.com'
+DB_PORT = '5432'
+DB_NAME = 'db_the_best'
+DB_USER = 'user'
+DB_PASSWORD = 'MioJINC0OznxHQQyXLhUH5pwXWYR9bbw'
+
+POSTGRES_DATABASE_URL = (
+    f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
+)
 
 # Cria um engine e uma base
-engine = create_engine(DATABASE_URL)
+engine = create_engine(POSTGRES_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 

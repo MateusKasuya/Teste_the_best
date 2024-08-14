@@ -13,6 +13,7 @@ from schema import (
 def transform_clientes(df: pd.DataFrame) -> pd.DataFrame:
     """
     Essa função recebe um dataframe e realiza as tratativas adequadas:
+    Garante que as tabelas possuam chaves primárias únicas.
     Garante que as colunas de data sejam transformadas no time correto.
     Transforma as colunas númericas de quantidade e valores sempre em números positivos
     """
@@ -31,6 +32,7 @@ def transform_clientes(df: pd.DataFrame) -> pd.DataFrame:
             ]:
                 # Corrige valores negativos para o seu equivalente positivo
                 df[column] = df[column].abs()
+        df.drop_duplicates(inplace=True)
         print('DataFrame transformado com sucesso.')
         return df
 
@@ -43,6 +45,7 @@ def transform_clientes(df: pd.DataFrame) -> pd.DataFrame:
 def transform_itenspedidos(df: pd.DataFrame) -> pd.DataFrame:
     """
     Essa função recebe um dataframe e realiza as tratativas adequadas:
+    Garante que as tabelas possuam chaves primárias únicas.
     Garante que as colunas de data sejam transformadas no time correto.
     Transforma as colunas númericas de quantidade e valores sempre em números positivos
     """
@@ -59,8 +62,11 @@ def transform_itenspedidos(df: pd.DataFrame) -> pd.DataFrame:
                 'quantidade',
                 'preco_unitario',
             ]:
+
                 # Corrige valores negativos para o seu equivalente positivo
                 df[column] = df[column].abs()
+
+        df.drop_duplicates(inplace=True)
         print('DataFrame transformado com sucesso.')
         return df
 
@@ -73,6 +79,7 @@ def transform_itenspedidos(df: pd.DataFrame) -> pd.DataFrame:
 def transform_pedidos(df: pd.DataFrame) -> pd.DataFrame:
     """
     Essa função recebe um dataframe e realiza as tratativas adequadas:
+    Garante que as tabelas possuam chaves primárias únicas.
     Garante que as colunas de data sejam transformadas no time correto.
     Transforma as colunas númericas de quantidade e valores sempre em números positivos
     """
@@ -91,6 +98,7 @@ def transform_pedidos(df: pd.DataFrame) -> pd.DataFrame:
             ]:
                 # Corrige valores negativos para o seu equivalente positivo
                 df[column] = df[column].abs()
+        df.drop_duplicates(inplace=True)
         print('DataFrame transformado com sucesso.')
         return df
 
@@ -103,6 +111,7 @@ def transform_pedidos(df: pd.DataFrame) -> pd.DataFrame:
 def transform_produtos(df: pd.DataFrame) -> pd.DataFrame:
     """
     Essa função recebe um dataframe e realiza as tratativas adequadas:
+    Garante que as tabelas possuam chaves primárias únicas.
     Garante que as colunas de data sejam transformadas no time correto.
     Transforma as colunas númericas de quantidade e valores sempre em números positivos
     """
@@ -121,6 +130,7 @@ def transform_produtos(df: pd.DataFrame) -> pd.DataFrame:
             ]:
                 # Corrige valores negativos para o seu equivalente positivo
                 df[column] = df[column].abs()
+        df.drop_duplicates(inplace=True)
         print('DataFrame transformado com sucesso.')
         return df
 

@@ -1,12 +1,4 @@
-from sqlalchemy import (
-    Column,
-    DateTime,
-    Float,
-    ForeignKey,
-    Integer,
-    String,
-    func,
-)
+from sqlalchemy import Column, DateTime, Float, Integer, String, func
 from sqlalchemy.orm import relationship
 
 from database import Base
@@ -49,17 +41,12 @@ class PedidosBase(Base):
     pedido_id = Column(
         Integer, primary_key=True
     )  # Identificador único do pedido, chave primária
-    cliente_id = Column(
-        Integer, ForeignKey('clientes.cliente_id')
-    )  # Chave estrangeira para 'clientes'
+    cliente_id = Column(Integer)  # Chave estrangeira para 'clientes'
     data_pedido = Column(DateTime)
     valor_total = Column(Float)
     created_at = Column(
         DateTime(timezone=True), default=func.now()
     )  # Data e hora em que o registro foi criado, com timezone
-
-    # Define o relacionamento com a tabela 'clientes'
-    cliente = relationship('ClienteBase')
 
 
 # Define a tabela 'itens_pedidos' no banco de dados
@@ -69,18 +56,10 @@ class ItensPedidosBase(Base):
     item_pedido_id = Column(
         Integer, primary_key=True
     )  # Identificador único do item do pedido, chave primária
-    pedido_id = Column(
-        Integer, ForeignKey('pedidos.pedido_id')
-    )  # Chave estrangeira para 'pedidos'
-    produto_id = Column(
-        Integer, ForeignKey('produtos.produto_id')
-    )  # Chave estrangeira para 'produtos'
+    pedido_id = Column(Integer)  # Chave estrangeira para 'pedidos'
+    produto_id = Column(Integer)  # Chave estrangeira para 'produtos'
     quantidade = Column(Integer)
     preco_unitario = Column(Float)
     created_at = Column(
         DateTime(timezone=True), default=func.now()
     )  # Data e hora em que o registro foi criado, com timezone
-
-    # Define os relacionamentos com as tabelas 'pedidos' e 'produtos'
-    pedido = relationship('PedidosBase')
-    produto = relationship('ProdutosBase')
