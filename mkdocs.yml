@@ -1,9 +1,7 @@
-site_name: Seu Projeto
+site_name: Teste The Best
+
 nav:
   - Home: index.md
-
-repo_name: "MateusKasuya/Teste_the_best"
-repo_url: "https://github.com/MateusKasuya/Teste_the_best"
 
 plugins:
   - search

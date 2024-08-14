@@ -2,6 +2,8 @@
 
 Abaixo, você encontrará detalhes sobre as funções e módulos do projeto.
 
+![Fluxo](static/fluxo.png)
+
 ## Módulo `etl`
 
 ### `extract`
